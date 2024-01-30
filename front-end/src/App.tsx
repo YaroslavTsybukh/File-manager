@@ -1,4 +1,5 @@
 import viteLogo from '/vite.svg';
+import './styles/main.scss';
 
 const App = () => {
     return (
