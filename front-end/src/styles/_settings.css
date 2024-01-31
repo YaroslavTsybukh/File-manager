@@ -1,0 +1,14 @@
+/* tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+    * {
+        @apply p-0;
+    }
+
+    body {
+        @apply min-h-full min-w-80;
+    }
+}
