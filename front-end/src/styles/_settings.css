@@ -9,6 +9,6 @@
     }
 
     body {
-        @apply min-h-full min-w-80;
+        @apply min-h-full min-w-80 text-base font-normal;
     }
 }

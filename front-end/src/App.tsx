@@ -1,12 +1,21 @@
-import viteLogo from '/vite.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { LogInPage, HomePage, SignUpPage } from './pages';
+import { PrivateRoute } from './core/utils/router/privateRouter';
+
 import './styles/main.css';
 
 const App = () => {
     return (
-        <>
-            <h1 className="text-2xl font-bold">Hello World!!</h1>
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<PrivateRoute />}>
+                    <Route path="/" element={<HomePage />} />
+                </Route>
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/login" element={<LogInPage />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 

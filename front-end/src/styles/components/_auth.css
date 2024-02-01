@@ -1,0 +1,45 @@
+.auth {
+    .auth__head {
+        @apply mb-8 flex h-screen flex-col items-center justify-center;
+    }
+
+    .auth__title {
+        @apply text-primary-900 content-center text-3xl font-semibold;
+    }
+
+    .auth__subtitle {
+        @apply text-tertiary-600 mt-3 content-center;
+    }
+
+    .auth__form {
+        @apply my-8 w-full max-w-sm;
+    }
+
+    .auth__form-block {
+        @apply flex flex-col first:mb-5;
+    }
+
+    .auth__forgot {
+        @apply mt-6 text-right text-sm font-semibold text-indigo-600;
+    }
+
+    .auth__label {
+        @apply text-secondary-700 text-sm font-medium;
+    }
+
+    .auth__input {
+        @apply mt-1.5 h-11 max-w-sm rounded-lg border px-3.5 py-2.5 shadow-sm;
+    }
+
+    .auth__button {
+        @apply mt-6 h-11 w-full max-w-sm rounded-lg border bg-purple-800 font-semibold text-white;
+    }
+
+    .auth__question {
+        @apply text-tertiary-600 text-sm;
+    }
+
+    .auth__span {
+        @apply text-sm font-semibold text-purple-800;
+    }
+}
