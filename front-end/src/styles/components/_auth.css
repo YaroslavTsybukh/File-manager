@@ -4,11 +4,11 @@
     }
 
     .auth__title {
-        @apply text-primary-900 content-center text-3xl font-semibold;
+        @apply content-center text-3xl font-semibold text-primary-900;
     }
 
     .auth__subtitle {
-        @apply text-tertiary-600 mt-3 content-center;
+        @apply mt-3 content-center text-tertiary-600;
     }
 
     .auth__form {
@@ -24,11 +24,15 @@
     }
 
     .auth__label {
-        @apply text-secondary-700 text-sm font-medium;
+        @apply text-sm font-medium text-secondary-700;
     }
 
     .auth__input {
         @apply mt-1.5 h-11 max-w-sm rounded-lg border px-3.5 py-2.5 shadow-sm;
+    }
+
+    .error-field {
+        @apply text-sm text-red-800;
     }
 
     .auth__button {
@@ -36,7 +40,7 @@
     }
 
     .auth__question {
-        @apply text-tertiary-600 text-sm;
+        @apply text-sm text-tertiary-600;
     }
 
     .auth__span {
