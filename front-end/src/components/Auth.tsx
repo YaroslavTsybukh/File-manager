@@ -1,19 +1,26 @@
+import { FC } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { IAuthForm } from '../../core/shared/auth.interface';
+import {
+    AUTH_FORM_DEFAULT_VALUES,
+    AUTH_FORM_VALIDATION_VALUES,
+} from '../core/constants';
 
-export const SignUp = () => {
+import { IAuthForm, ITemplateData } from '../core/shared/auth.interface';
+
+interface IProps {
+    data: ITemplateData;
+}
+
+export const Auth: FC<IProps> = ({
+    data: { title, subtitle, button, question, link, pathname },
+}) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<IAuthForm>({
-        defaultValues: {
-            email: '',
-            password: '',
-        },
-    });
+    } = useForm<IAuthForm>(AUTH_FORM_DEFAULT_VALUES);
 
     const onSubmit: SubmitHandler<IAuthForm> = (data) => {
         console.log(data);
@@ -22,8 +29,8 @@ export const SignUp = () => {
     return (
         <section className="auth">
             <div className="auth__head">
-                <h1 className="auth__title">Sign up</h1>
-                <p className="auth__subtitle">Start your 30-day free trial.</p>
+                <h1 className="auth__title">{title}</h1>
+                <p className="auth__subtitle">{subtitle}</p>
                 <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="auth__form-block">
                         <label className="auth__label" htmlFor="email">
@@ -34,13 +41,7 @@ export const SignUp = () => {
                             type="email"
                             id="email"
                             placeholder="Email"
-                            {...register('email', {
-                                required: 'Это поле должно быть заполнено',
-                                minLength: {
-                                    value: 5,
-                                    message: 'Должно быть минимум 5 символов',
-                                },
-                            })}
+                            {...register('email', AUTH_FORM_VALIDATION_VALUES)}
                         />
                         {errors.email && (
                             <p className="error-field">
@@ -57,13 +58,10 @@ export const SignUp = () => {
                             type="password"
                             id="password"
                             placeholder="Password"
-                            {...register('password', {
-                                required: 'Это поле должно быть заполнено',
-                                minLength: {
-                                    value: 5,
-                                    message: 'Должно быть минимум 5 символов',
-                                },
-                            })}
+                            {...register(
+                                'password',
+                                AUTH_FORM_VALIDATION_VALUES,
+                            )}
                         />
                         {errors.password && (
                             <p className="error-field">
@@ -71,14 +69,17 @@ export const SignUp = () => {
                             </p>
                         )}
                     </div>
+                    {pathname == '/login' && (
+                        <div className="auth__forgot">Forgot password</div>
+                    )}
                     <button className="auth__button" type="submit">
-                        Get started
+                        {button}
                     </button>
                 </form>
                 <p className="auth__question">
-                    Already have an account?{' '}
-                    <Link to="/login" className="auth__span">
-                        Log in
+                    {question.text}{' '}
+                    <Link to={link} className="auth__span">
+                        {question.span}
                     </Link>
                 </p>
             </div>

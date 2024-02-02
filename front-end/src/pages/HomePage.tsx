@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import { Layout } from '../layout/Layout';
 
-export const HomePage = () => {
+export const HomePage: FC = () => {
     return (
         <Layout>
             <section>
