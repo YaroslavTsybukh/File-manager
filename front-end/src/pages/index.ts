@@ -1,5 +1,5 @@
 //pages
-export { HomePage } from './HomePage';
+export { HomePage } from 'pages/HomePage';
 
 //auth
-export { AuthPage } from './AuthPage';
+export { AuthPage } from 'pages/AuthPage';

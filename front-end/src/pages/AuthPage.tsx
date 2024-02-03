@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Auth } from '../components';
-import { Layout } from '../layout/Layout';
+import { Auth } from 'components';
+import { Layout } from 'layout/Layout';
 import { useLocation } from 'react-router-dom';
 
-import { paths } from '../core/config';
+import { paths } from 'core/config';
 
 export const AuthPage: FC = () => {
     const { pathname } = useLocation();

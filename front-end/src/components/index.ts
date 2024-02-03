@@ -1,2 +1,2 @@
 //auth
-export { Auth } from './Auth';
+export { Auth } from 'components/Auth';

@@ -2,4 +2,4 @@
 @import '_settings';
 
 /* подключения компонентов страницы */
-@import './components/_auth.css';
+@import 'styles/components/_auth.css';

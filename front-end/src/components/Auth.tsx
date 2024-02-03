@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import {
     AUTH_FORM_DEFAULT_VALUES,
     AUTH_FORM_VALIDATION_VALUES,
-} from '../core/constants';
+} from 'core/constants';
 
-import { IAuthForm, ITemplateData } from '../core/shared/auth.interface';
+import { IAuthForm, ITemplateData } from 'core/shared/auth.interface';
 
 interface IProps {
     data: ITemplateData;

@@ -1,2 +1,2 @@
 //routes
-export { paths } from './routes.config';
+export { paths } from 'core/config/routes.config';

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AuthPage, HomePage } from '../pages';
-import { PrivateRoute, MultiRoute } from '../core/utils';
-import { paths } from '../core/config';
+import { AuthPage, HomePage } from 'pages';
+import { MultiRoute, PrivateRoute } from 'core/utils';
+import { paths } from 'core/config';
 
 export const Router: FC = () => {
     return (
