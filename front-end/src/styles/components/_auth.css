@@ -1,0 +1,49 @@
+.auth {
+    .auth__head {
+        @apply mb-8 flex h-screen flex-col items-center justify-center;
+    }
+
+    .auth__title {
+        @apply content-center text-3xl font-semibold text-primary-900;
+    }
+
+    .auth__subtitle {
+        @apply mt-3 content-center text-tertiary-600;
+    }
+
+    .auth__form {
+        @apply my-8 w-full max-w-sm;
+    }
+
+    .auth__form-block {
+        @apply flex flex-col first:mb-5;
+    }
+
+    .auth__forgot {
+        @apply mt-6 text-right text-sm font-semibold text-indigo-600;
+    }
+
+    .auth__label {
+        @apply text-sm font-medium text-secondary-700;
+    }
+
+    .auth__input {
+        @apply mt-1.5 h-11 max-w-sm;
+    }
+
+    .error-field {
+        @apply text-sm text-red-800;
+    }
+
+    .auth__button {
+        @apply mt-6 h-11 w-full max-w-sm rounded-lg border bg-purple-800 font-semibold text-white;
+    }
+
+    .auth__question {
+        @apply text-sm text-tertiary-600;
+    }
+
+    .auth__span {
+        @apply text-sm font-semibold text-purple-800;
+    }
+}

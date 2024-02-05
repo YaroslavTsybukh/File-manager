@@ -1,13 +1,10 @@
-import viteLogo from '/vite.svg';
-import './styles/main.css';
+import { FC } from 'react';
+import { Router } from 'routes';
 
-const App = () => {
-    return (
-        <>
-            <h1 className="text-2xl font-bold">Hello World!!</h1>
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-        </>
-    );
+import 'styles/main.css';
+
+const App: FC = () => {
+    return <Router />;
 };
 
 export default App;
