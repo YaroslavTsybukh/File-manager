@@ -28,7 +28,7 @@
     }
 
     .auth__input {
-        @apply mt-1.5 h-11 max-w-sm rounded-lg border px-3.5 py-2.5 shadow-sm;
+        @apply mt-1.5 h-11 max-w-sm;
     }
 
     .error-field {

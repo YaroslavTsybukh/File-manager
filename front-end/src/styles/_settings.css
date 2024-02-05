@@ -12,3 +12,9 @@
         @apply min-h-full min-w-80 text-base font-normal;
     }
 }
+
+@layer components {
+    input {
+        @apply rounded-lg border px-3.5 py-2.5 shadow-sm;
+    }
+}
