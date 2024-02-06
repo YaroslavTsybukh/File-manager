@@ -14,3 +14,10 @@ export interface ITemplateData {
     link: string;
     pathname: string;
 }
+
+export interface IRegisterUser {
+    id: number | null;
+    name: string;
+    email: string;
+    accessToken: string;
+}
