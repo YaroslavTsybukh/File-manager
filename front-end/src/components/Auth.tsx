@@ -35,8 +35,11 @@ export const Auth: FC<IProps> = ({
     const onSubmit: SubmitHandler<IAuthForm> = (data) => {
         if (pathname === paths.signup) {
             dispatch(authUser({ request: UsersService.createUser, data }));
-            reset({ email: '', password: '' });
+        } else {
+            dispatch(authUser({ request: UsersService.loginUser, data }));
         }
+
+        reset({ email: '', password: '' });
     };
 
     useEffect(() => {

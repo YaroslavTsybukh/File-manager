@@ -5,4 +5,7 @@ export const UsersService = {
     async createUser(data: IAuthForm) {
         return await instance.post('user', data);
     },
+    async loginUser(data: IAuthForm) {
+        return await instance.post('auth/login', data);
+    },
 };
