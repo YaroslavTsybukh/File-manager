@@ -1,13 +1,17 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
     AUTH_FORM_DEFAULT_VALUES,
     AUTH_FORM_VALIDATION_VALUES,
 } from 'core/constants';
+import { authUserSelector, authUser } from 'core/store/slices/authSlice';
+import { useAppDispatch, useAppSelector } from 'core/hooks/redux';
 
 import { IAuthForm, ITemplateData } from 'core/shared/auth.interface';
+import { paths } from 'core/config';
+import { UsersService } from 'core/services/auth.service';
 
 interface IProps {
     data: ITemplateData;
@@ -19,12 +23,26 @@ export const Auth: FC<IProps> = ({
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<IAuthForm>(AUTH_FORM_DEFAULT_VALUES);
 
+    const dispatch = useAppDispatch();
+    const { status, errorText } = useAppSelector(authUserSelector);
+
+    const navigate = useNavigate();
+
     const onSubmit: SubmitHandler<IAuthForm> = (data) => {
-        console.log(data);
+        if (pathname === paths.signup) {
+            dispatch(authUser({ request: UsersService.createUser, data }));
+            reset({ email: '', password: '' });
+        }
     };
+
+    useEffect(() => {
+        if (status === 'error') alert(errorText);
+        if (status === 'success') navigate(paths.home, { replace: true });
+    }, [status]);
 
     return (
         <section className="auth">
