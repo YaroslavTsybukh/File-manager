@@ -18,7 +18,6 @@ const initialState: IAuthState = {
     errorText: '',
 };
 
-//TODO: продолжить работу над авторизацией/registration
 const authSlice = createSlice({
     name: 'authReducer',
     initialState,
