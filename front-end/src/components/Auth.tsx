@@ -32,19 +32,21 @@ export const Auth: FC<IProps> = ({
 
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<IAuthForm> = (data) => {
+    const onSubmit: SubmitHandler<IAuthForm> = async (data) => {
         if (pathname === paths.signup) {
-            dispatch(authUser({ request: UsersService.createUser, data }));
+            await dispatch(
+                authUser({ request: UsersService.createUser, data }),
+            );
         } else {
-            dispatch(authUser({ request: UsersService.loginUser, data }));
+            await dispatch(authUser({ request: UsersService.loginUser, data }));
         }
 
         reset({ email: '', password: '' });
+        navigate(paths.home, { replace: true });
     };
 
     useEffect(() => {
         if (status === 'error') alert(errorText);
-        if (status === 'success') navigate(paths.home, { replace: true });
     }, [status]);
 
     return (

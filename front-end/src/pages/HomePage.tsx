@@ -1,4 +1,6 @@
 import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Layout } from 'layout/Layout';
 import { useAppDispatch } from 'core/hooks/redux';
 import { updateProfile } from 'core/store/slices/profileSlice';
