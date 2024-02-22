@@ -5,13 +5,13 @@ import { IUser } from 'core/shared/auth.interface';
 
 type Profile = Omit<IUser, 'accessToken' | 'password'>;
 
-interface IInitialState {
+interface IProfileState {
     user: null | Profile;
     status: string;
     errorText: string;
 }
 
-const initialState: IInitialState = {
+const initialState: IProfileState = {
     user: null,
     status: 'idle',
     errorText: '',
@@ -57,7 +57,11 @@ const profileSlice = createSlice({
             },
         ),
     }),
+    selectors: {
+        selectStatus: (state) => state.status,
+    },
 });
 
+export const { selectStatus } = profileSlice.selectors;
 export const { updateProfile } = profileSlice.actions;
 export default profileSlice.reducer;

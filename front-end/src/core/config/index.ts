@@ -2,4 +2,4 @@
 export { paths } from 'core/config/routes.config';
 
 //axios
-export { instance, instanceAuth } from 'core/config/api.config';
+export { instance, instanceWithTokens } from 'core/config/api.config';

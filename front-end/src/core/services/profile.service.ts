@@ -1,8 +1,8 @@
-import { instance } from 'core/config';
+import { instance, instanceWithTokens } from 'core/config';
 
 export const ProfileService = {
     async updateProfile() {
-        return await instance.get('auth/profile', {
+        return await instanceWithTokens.get('auth/profile', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
