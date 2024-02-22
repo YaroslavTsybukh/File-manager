@@ -1,13 +1,17 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
     AUTH_FORM_DEFAULT_VALUES,
     AUTH_FORM_VALIDATION_VALUES,
 } from 'core/constants';
+import { authUserSelector, authUser } from 'core/store/slices/authSlice';
+import { useAppDispatch, useAppSelector } from 'core/hooks/redux';
 
 import { IAuthForm, ITemplateData } from 'core/shared/auth.interface';
+import { paths } from 'core/config';
+import { UsersService } from 'core/services/auth.service';
 
 interface IProps {
     data: ITemplateData;
@@ -19,12 +23,31 @@ export const Auth: FC<IProps> = ({
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<IAuthForm>(AUTH_FORM_DEFAULT_VALUES);
 
-    const onSubmit: SubmitHandler<IAuthForm> = (data) => {
-        console.log(data);
+    const dispatch = useAppDispatch();
+    const { status, errorText } = useAppSelector(authUserSelector);
+
+    const navigate = useNavigate();
+
+    const onSubmit: SubmitHandler<IAuthForm> = async (data) => {
+        if (pathname === paths.signup) {
+            await dispatch(
+                authUser({ request: UsersService.createUser, data }),
+            );
+        } else {
+            await dispatch(authUser({ request: UsersService.loginUser, data }));
+        }
+
+        reset({ email: '', password: '' });
+        navigate(paths.home, { replace: true });
     };
+
+    useEffect(() => {
+        if (status === 'error') alert(errorText);
+    }, [status]);
 
     return (
         <section className="auth">
@@ -69,7 +92,7 @@ export const Auth: FC<IProps> = ({
                             </p>
                         )}
                     </div>
-                    {pathname == '/login' && (
+                    {pathname == paths.login && (
                         <div className="auth__forgot">Forgot password</div>
                     )}
                     <button className="auth__button" type="submit">

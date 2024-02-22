@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
+import { isAuth } from '..';
 
 export const PrivateRoute: FC = () => {
-    const isAuth = false;
+    const auth = isAuth();
 
-    return isAuth ? <Outlet /> : <Navigate to="/login" />;
+    return auth ? <Outlet /> : <Navigate to="/login" />;
 };
