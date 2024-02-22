@@ -92,7 +92,7 @@ export const Auth: FC<IProps> = ({
                             </p>
                         )}
                     </div>
-                    {pathname == '/login' && (
+                    {pathname == paths.login && (
                         <div className="auth__forgot">Forgot password</div>
                     )}
                     <button className="auth__button" type="submit">
