@@ -7,9 +7,7 @@ export const HomePage: FC = () => {
 
     return (
         <Layout>
-            <section>
-                <h1>HomePage</h1>
-            </section>
+            <section></section>
         </Layout>
     );
 };
