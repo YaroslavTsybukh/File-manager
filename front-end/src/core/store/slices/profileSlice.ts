@@ -59,9 +59,10 @@ const profileSlice = createSlice({
     }),
     selectors: {
         selectStatus: (state) => state.status,
+        selectUser: (state) => state.user,
     },
 });
 
-export const { selectStatus } = profileSlice.selectors;
+export const { selectStatus, selectUser } = profileSlice.selectors;
 export const { updateProfile } = profileSlice.actions;
 export default profileSlice.reducer;

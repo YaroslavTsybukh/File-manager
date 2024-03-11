@@ -6,8 +6,8 @@ export const WithSidebarLayout: FC<{ children: ReactNode }> = ({
 }) => {
     return (
         <main className="flex">
-            <article>{children}</article>
             <SideBar />
+            <article>{children}</article>
         </main>
     );
 };

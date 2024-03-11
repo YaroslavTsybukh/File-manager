@@ -11,6 +11,10 @@
     body {
         @apply min-h-full min-w-80 text-base font-normal;
     }
+
+    article {
+        @apply mt-7.5 w-full max-w-full;
+    }
 }
 
 @layer components {

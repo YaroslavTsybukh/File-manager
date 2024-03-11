@@ -2,9 +2,14 @@
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
+        container: {
+            padding: '40px',
+        },
         extend: {
             spacing: {
                 5.5: '22px',
+                7.5: '30px',
+                12.5: '50px',
                 33: '132px',
             },
             colors: {
@@ -18,8 +23,8 @@ export default {
             borderRadius: {
                 50: '50px',
             },
-            padding: {
-                12.5: '50px',
+            maxWidth: {
+                491: '491px',
             },
         },
     },
