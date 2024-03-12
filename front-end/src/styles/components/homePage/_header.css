@@ -4,7 +4,7 @@
     }
 
     .header__block-left {
-        @apply max-w-491 relative w-full;
+        @apply max-w-123 relative w-full;
     }
 
     .lucide-search {

@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { BellRing, CircleUserRound, Search } from 'lucide-react';
 
 import { selectUser } from 'core/store/slices/profileSlice';
 import { useAppSelector } from 'core/hooks/redux';
 
-export const Header = () => {
+export const Header: FC = () => {
     const state = useAppSelector(selectUser);
     return (
         <section className="header">

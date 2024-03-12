@@ -1,0 +1,24 @@
+.content {
+    @apply mt-8;
+
+    .content__top {
+        @apply flex items-center justify-between;
+    }
+
+    .content__wrapper {
+        @apply flex items-center gap-4;
+    }
+
+    .content__sort,
+    .content__create {
+        @apply bg-left-2-top-4 py-3 pl-8 pr-6;
+    }
+
+    .content__sort {
+        @apply bg-chevronDown bg-blue-50;
+    }
+
+    .content__create {
+        @apply bg-plus bg-blue-100;
+    }
+}

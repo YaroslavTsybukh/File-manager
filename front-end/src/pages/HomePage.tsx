@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useCheckProfile } from 'core/hooks/useCheckProfile';
 import { Layout } from 'layout/Layout';
-import { Header } from 'components';
+import { Header, Content } from 'components';
 
 export const HomePage: FC = () => {
     useCheckProfile();
@@ -9,6 +9,7 @@ export const HomePage: FC = () => {
     return (
         <Layout>
             <Header />
+            <Content />
         </Layout>
     );
 };
