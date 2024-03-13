@@ -6,7 +6,7 @@
     }
 
     .aside__item {
-        @apply rounded-r-12.5 w-full max-w-52 cursor-pointer py-2.5 pl-12.5 hover:bg-blue-100 hover:shadow-md;
+        @apply w-full max-w-52 cursor-pointer rounded-r-12.5 py-2.5 pl-12.5 hover:bg-blue-100 hover:shadow-md;
     }
 
     .aside__link {
@@ -18,6 +18,6 @@
     }
 
     .aside__logout {
-        @apply mt-5.5 bg-blue-100 px-7 py-3;
+        @apply mt-5.5 flex items-center gap-2 bg-blue-100 px-7 py-3;
     }
 }
