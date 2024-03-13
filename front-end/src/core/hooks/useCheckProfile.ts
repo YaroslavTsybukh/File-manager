@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './redux';
-import { updateProfile, selectStatus } from 'core/store/slices/profileSlice';
+import { updateProfileUser, selectStatus } from 'core/store/slices/userSlice';
 import { paths } from 'core/config';
 import { isAuth } from 'core/utils';
 
@@ -12,7 +12,7 @@ export const useCheckProfile = () => {
     const auth = isAuth();
 
     useEffect(() => {
-        dispatch(updateProfile());
+        dispatch(updateProfileUser());
     }, []);
 
     useEffect(() => {

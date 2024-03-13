@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
-import { logoutUser } from 'core/store/slices/profileSlice';
+import { logoutUser } from 'core/store/slices/userSlice';
 import { useAppDispatch } from 'core/hooks/redux';
 import { paths } from 'core/config';
 import { sidebarItems } from './sidebarItems';

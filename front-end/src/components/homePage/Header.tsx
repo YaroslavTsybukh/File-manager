@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { BellRing, CircleUserRound, Search } from 'lucide-react';
 
-import { selectUser } from 'core/store/slices/profileSlice';
+import { selectUser } from 'core/store/slices/userSlice';
 import { useAppSelector } from 'core/hooks/redux';
 
 export const Header: FC = () => {

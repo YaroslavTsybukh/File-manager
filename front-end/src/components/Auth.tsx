@@ -6,7 +6,7 @@ import {
     AUTH_FORM_DEFAULT_VALUES,
     AUTH_FORM_VALIDATION_VALUES,
 } from 'core/constants';
-import { authUserSelector, authUser } from 'core/store/slices/authSlice';
+import { allState, authUser } from 'core/store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from 'core/hooks/redux';
 
 import { IAuthForm, ITemplateData } from 'core/shared/auth.interface';
@@ -28,7 +28,7 @@ export const Auth: FC<IProps> = ({
     } = useForm<IAuthForm>(AUTH_FORM_DEFAULT_VALUES);
 
     const dispatch = useAppDispatch();
-    const { status, errorText } = useAppSelector(authUserSelector);
+    const { status, errorText } = useAppSelector(allState);
 
     const navigate = useNavigate();
 
