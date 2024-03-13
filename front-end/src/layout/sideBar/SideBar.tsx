@@ -1,8 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
+import { logoutUser } from 'core/store/slices/profileSlice';
+import { useAppDispatch } from 'core/hooks/redux';
+import { paths } from 'core/config';
 import { sidebarItems } from './sidebarItems';
 
 export const SideBar = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const userLogout = async () => {
+        await dispatch(logoutUser());
+        navigate(paths.login, { replace: true });
+    };
+
     return (
         <aside className="aside">
             <div className="aside__logo">LOGO</div>
@@ -19,7 +30,7 @@ export const SideBar = () => {
                 </ul>
             </nav>
             <div className="aside__footer">
-                <button className="aside__logout">
+                <button className="aside__logout" onClick={userLogout}>
                     <LogOut size={18} />
                     Logout
                 </button>

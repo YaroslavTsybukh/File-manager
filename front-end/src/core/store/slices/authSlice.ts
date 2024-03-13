@@ -1,8 +1,6 @@
-import { createSlice } from 'core/utils';
-import { IUser } from 'core/shared/auth.interface';
 import { isAxiosError } from 'axios';
-
-import { IThunkArg } from 'core/shared/auth.interface';
+import { createSlice } from 'core/utils';
+import { IUser, IThunkArg } from 'core/shared/auth.interface';
 
 interface IAuthState {
     user: IUser | null;

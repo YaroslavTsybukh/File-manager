@@ -2,6 +2,7 @@ import { isAxiosError } from 'axios';
 import { createSlice } from 'core/utils';
 import { ProfileService } from 'core/services/profile.service';
 import { IUser } from 'core/shared/auth.interface';
+import { UsersService } from 'core/services';
 
 type Profile = Omit<IUser, 'accessToken' | 'password'>;
 
@@ -45,14 +46,45 @@ const profileSlice = createSlice({
                     state.status = 'loading';
                     state.errorText = '';
                 },
-                rejected: (state, action) => {
-                    state.status = 'error';
-                    if (action.payload) state.errorText = action.payload;
-                },
                 fulfilled: (state, action) => {
                     state.status = 'success';
                     state.errorText = '';
                     state.user = action.payload;
+                },
+                rejected: (state, action) => {
+                    state.status = 'error';
+                    if (action.payload) state.errorText = action.payload;
+                },
+            },
+        ),
+        logoutUser: create.asyncThunk<void, void, { rejectValue: string }>(
+            async (_, { rejectWithValue }) => {
+                try {
+                    const res = await UsersService.logoutUser();
+                    localStorage.removeItem('accessToken');
+                } catch (e) {
+                    if (
+                        isAxiosError(e) &&
+                        e.response &&
+                        e.response.data.message
+                    ) {
+                        return rejectWithValue(e.response.data.message);
+                    }
+                }
+            },
+            {
+                pending: (state) => {
+                    state.status = 'loading';
+                    state.errorText = '';
+                },
+                fulfilled: (state) => {
+                    state.status = 'success';
+                    state.errorText = '';
+                    state.user = null;
+                },
+                rejected: (state, action) => {
+                    state.status = 'error';
+                    if (action.payload) state.errorText = action.payload;
                 },
             },
         ),
@@ -64,5 +96,5 @@ const profileSlice = createSlice({
 });
 
 export const { selectStatus, selectUser } = profileSlice.selectors;
-export const { updateProfile } = profileSlice.actions;
+export const { updateProfile, logoutUser } = profileSlice.actions;
 export default profileSlice.reducer;
