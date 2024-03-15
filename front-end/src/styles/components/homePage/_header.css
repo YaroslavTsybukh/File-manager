@@ -1,0 +1,22 @@
+.header {
+    .header__wrapper {
+        @apply flex items-center justify-between;
+    }
+
+    .header__block-left {
+        @apply max-w-123 relative w-full;
+    }
+
+    .lucide-search {
+        @apply absolute left-3 top-3.5;
+    }
+
+    .header__input {
+        @apply w-full bg-slate-100 pl-10 focus-visible:outline-none;
+    }
+
+    .header__block-right,
+    .user {
+        @apply flex gap-5;
+    }
+}

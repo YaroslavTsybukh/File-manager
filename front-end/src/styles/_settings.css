@@ -11,10 +11,23 @@
     body {
         @apply min-h-full min-w-80 text-base font-normal;
     }
+
+    article {
+        @apply mt-7.5 w-full max-w-full;
+    }
 }
 
 @layer components {
     input {
         @apply rounded-lg border px-3.5 py-2.5 shadow-sm;
+    }
+
+    select {
+        @apply cursor-pointer appearance-none bg-4.5 bg-no-repeat focus-visible:outline-0;
+    }
+
+    select,
+    button {
+        @apply duration-300 ease-in-out hover:shadow-md;
     }
 }

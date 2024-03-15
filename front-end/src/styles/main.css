@@ -3,3 +3,6 @@
 
 /* подключения компонентов страницы */
 @import 'styles/components/_auth.css';
+@import 'styles/components/_sidebar.css';
+@import 'styles/components/homePage/_header.css';
+@import 'styles/components/homePage/_content.css';

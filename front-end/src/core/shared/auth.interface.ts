@@ -23,8 +23,7 @@ export interface IUser {
     email: string;
     createdAt: string;
     updatedAt: string;
-    accessToken: string;
-    password?: string;
+    accessToken?: string;
 }
 
 export interface IThunkArg {

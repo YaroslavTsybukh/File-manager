@@ -1,5 +1,9 @@
 import { instance, instanceWithTokens } from 'core/config';
 
+interface IRefreshTokens {
+    accessToken: string;
+}
+
 export const ProfileService = {
     async updateProfile() {
         return await instanceWithTokens.get('auth/profile', {
@@ -9,6 +13,6 @@ export const ProfileService = {
         });
     },
     async refreshTokens() {
-        return await instance.post('token/refresh');
+        return await instance.post<IRefreshTokens>('token/refresh');
     },
 };
