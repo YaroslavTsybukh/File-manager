@@ -1,5 +1,8 @@
-import { Info, Download, Trash2 } from 'lucide-react';
+import { Info, Download, Trash2, ChevronDown, Plus } from 'lucide-react';
 import { FC } from 'react';
+
+import { CONTENT_CREATE, CONTENT_SORT } from 'core/constants';
+import { DropDown } from '../DropDown';
 
 export const Content: FC = () => {
     return (
@@ -7,24 +10,19 @@ export const Content: FC = () => {
             <div className="container">
                 <div className="content__top">
                     <h1 className="content__title">Welcome Admin!</h1>
-
                     <div className="content__wrapper">
-                        <select name="sort-documents" className="content__sort">
-                            <option value="0">Sort by</option>
-                            <option value="DESC Date">Descending Date</option>
-                            <option value="ASC Date">Ascending Date</option>
-                            <option value="DESC Alphabet">
-                                Descending Alphabet
-                            </option>
-                            <option value="ASC Alphabet">
-                                Ascending Alphabet
-                            </option>
-                        </select>
-                        <select name="create" className="content__create">
-                            <option value="0">New Create</option>
-                            <option value="1">Create new folder</option>
-                            <option value="2">Upload File</option>
-                        </select>
+                        <DropDown
+                            dynamicClass="content__sort"
+                            icon={<ChevronDown size={20} />}
+                            buttonText="Sort By"
+                            items={CONTENT_SORT}
+                        />
+                        <DropDown
+                            dynamicClass="content__create"
+                            icon={<Plus size={20} />}
+                            buttonText="Create"
+                            items={CONTENT_CREATE}
+                        />
                         <Info />
                     </div>
                 </div>

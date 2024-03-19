@@ -9,17 +9,12 @@
         @apply flex items-center gap-4;
     }
 
-    .content__sort,
-    .content__create {
-        @apply bg-left-2-top-4 py-3 pl-8 pr-6;
+    .content__sort .dropdown__button {
+        @apply bg-blue-50 px-6 py-4;
     }
 
-    .content__sort {
-        @apply bg-blue-50 bg-chevronDown;
-    }
-
-    .content__create {
-        @apply bg-blue-100 bg-plus;
+    .content__create .dropdown__button {
+        @apply bg-blue-100 px-6 py-4;
     }
 
     .table {
