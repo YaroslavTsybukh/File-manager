@@ -3,7 +3,7 @@ import { LogOut } from 'lucide-react';
 import { logoutUser } from 'core/store/slices/userSlice';
 import { useAppDispatch } from 'core/hooks/redux';
 import { paths } from 'core/config';
-import { SIDEBARITEMS } from 'core/constants';
+import { SIDEBAR_ITEMS } from 'core/constants';
 
 export const SideBar = () => {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const SideBar = () => {
             <div className="aside__logo">LOGO</div>
             <nav className="aside__navigation">
                 <ul className="aside__list">
-                    {SIDEBARITEMS.map(({ id, content, path, icon: Icon }) => (
+                    {SIDEBAR_ITEMS.map(({ id, content, path, icon: Icon }) => (
                         <li className="aside__item" key={id}>
                             <Link to={path} className="aside__link">
                                 <Icon size={18} />
