@@ -1,20 +1,23 @@
 import { FC, ReactNode, useState, useEffect, useRef } from 'react';
+import { UploadFile } from '..';
 
 interface IProps {
-    dynamicClass: string;
+    dynamicClass?: string;
     icon: ReactNode;
     buttonText: string;
     items: string[];
+    showUpload?: boolean;
 }
 
 export const DropDown: FC<IProps> = ({
-    dynamicClass,
+    dynamicClass = '',
     icon,
     buttonText,
     items,
+    showUpload = false,
 }) => {
     const [open, setOpen] = useState<boolean>(false);
-    const menuRef = useRef<HTMLUListElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     const handleClick = () => {
         console.log(1);
@@ -33,7 +36,7 @@ export const DropDown: FC<IProps> = ({
     }, []);
 
     return (
-        <div className={`dropdown ${dynamicClass}`}>
+        <div className={`dropdown ${dynamicClass}`} ref={menuRef}>
             <button
                 type="button"
                 className="dropdown__button"
@@ -43,7 +46,12 @@ export const DropDown: FC<IProps> = ({
                 {icon}
             </button>
             {open && (
-                <ul className="dropdown__list" ref={menuRef}>
+                <ul className="dropdown__list">
+                    {showUpload && (
+                        <li className="dropdown__item">
+                            <UploadFile />
+                        </li>
+                    )}
                     {items.map((item, i) => (
                         <li
                             key={i}

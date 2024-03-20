@@ -1,12 +1,12 @@
 .dropdown {
-    @apply relative;
+    @apply relative inline-block;
 
     .dropdown__button {
         @apply gap-2;
     }
 
     .dropdown__list {
-        @apply top-18 absolute left-1/2 min-w-48 -translate-x-2/4 bg-white py-2 text-center shadow-lg;
+        @apply absolute left-1/2 mt-5 min-w-48 -translate-x-2/4 bg-white py-2 text-center shadow-lg;
     }
 
     .dropdown__item {

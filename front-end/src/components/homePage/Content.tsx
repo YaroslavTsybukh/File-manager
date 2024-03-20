@@ -2,7 +2,7 @@ import { Info, Download, Trash2, ChevronDown, Plus } from 'lucide-react';
 import { FC } from 'react';
 
 import { CONTENT_CREATE, CONTENT_SORT } from 'core/constants';
-import { DropDown } from '../DropDown';
+import { DropDown, UploadFile } from '../';
 
 export const Content: FC = () => {
     return (
@@ -22,6 +22,7 @@ export const Content: FC = () => {
                             icon={<Plus size={20} />}
                             buttonText="Create"
                             items={CONTENT_CREATE}
+                            showUpload={true}
                         />
                         <Info />
                     </div>
