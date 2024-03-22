@@ -9,7 +9,7 @@ interface IProps {
     className: string;
 }
 
-export const Table: FC<IProps> = ({ className = '' }) => {
+export const DataTable: FC<IProps> = ({ className = '' }) => {
     const { status, files } = useAppSelector(allState);
     return (
         <div className={`table ${className}`}>
@@ -42,7 +42,7 @@ export const Table: FC<IProps> = ({ className = '' }) => {
                         <li className="table__data table__data_download">
                             <Download />
                         </li>
-                        <li className="table__data table__data_trash">
+                        <li className="table__data table__data_trash" onClick>
                             <Trash2 />
                         </li>
                         <li className="table__data table__data_date">

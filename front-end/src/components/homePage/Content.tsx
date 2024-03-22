@@ -2,7 +2,7 @@ import { Info, ChevronDown, Plus } from 'lucide-react';
 import { FC } from 'react';
 
 import { CONTENT_CREATE, CONTENT_SORT } from 'core/constants';
-import { DropDown, Table } from '..';
+import { DropDown, DataTable } from '..';
 
 export const Content: FC = () => {
     return (
@@ -27,7 +27,7 @@ export const Content: FC = () => {
                         <Info />
                     </div>
                 </div>
-                <Table className="content__table" />
+                <DataTable className="content__table" />
             </div>
         </section>
     );
