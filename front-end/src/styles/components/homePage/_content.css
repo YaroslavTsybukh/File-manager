@@ -17,53 +17,7 @@
         @apply bg-blue-100 px-6 py-4;
     }
 
-    .table {
+    .content__table {
         @apply mt-8;
-    }
-
-    .table,
-    .table__row {
-        @apply grid grid-cols-12 items-center gap-x-7 gap-y-2;
-    }
-
-    .table__head {
-        @apply border-b-2;
-    }
-
-    .table__head,
-    .table__body {
-        @apply col-start-1 col-end-13;
-    }
-
-    .table__body .table__row {
-        @apply pb-2;
-    }
-
-    .table__header_name,
-    .table__data_name {
-        @apply col-start-2 col-end-7;
-    }
-
-    .table__data_download {
-        @apply col-start-8 col-end-9;
-    }
-
-    .table__data_trash {
-        @apply col-start-9 col-end-10;
-    }
-
-    .lucide-download,
-    .lucide-trash2 {
-        @apply cursor-pointer;
-    }
-
-    .table__header_date,
-    .table__data_date {
-        @apply col-start-10 col-end-11;
-    }
-
-    .table__header_size,
-    .table__data_size {
-        @apply col-start-12 col-end-13;
     }
 }

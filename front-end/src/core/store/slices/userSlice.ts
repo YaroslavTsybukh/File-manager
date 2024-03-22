@@ -18,7 +18,7 @@ const initialState: IInitialState = {
 };
 
 const userSlice = createSlice({
-    name: 'userReducer',
+    name: 'user',
     initialState,
     reducers: (create) => ({
         authUser: create.asyncThunk<IUser, IThunkArg, { rejectValue: string }>(
