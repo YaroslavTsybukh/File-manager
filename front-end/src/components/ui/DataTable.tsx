@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import dayjs from 'dayjs';
 import { Download, Trash2 } from 'lucide-react';
-import { useAppSelector } from 'core/hooks/redux';
-import { allState } from 'core/store/slices/fileSlice';
+import { useAppSelector, useAppDispatch } from 'core/hooks/redux';
+import { allState, deleteFile } from 'core/store/slices/fileSlice';
 import { formatBytes } from 'core/utils';
 
 interface IProps {
@@ -11,6 +11,12 @@ interface IProps {
 
 export const DataTable: FC<IProps> = ({ className = '' }) => {
     const { status, files } = useAppSelector(allState);
+    const dispatch = useAppDispatch();
+
+    const handleTrash = (id: number) => {
+        dispatch(deleteFile(id));
+    };
+
     return (
         <div className={`table ${className}`}>
             <div className="table__head">
@@ -42,7 +48,10 @@ export const DataTable: FC<IProps> = ({ className = '' }) => {
                         <li className="table__data table__data_download">
                             <Download />
                         </li>
-                        <li className="table__data table__data_trash" onClick>
+                        <li
+                            className="table__data table__data_trash"
+                            onClick={() => handleTrash(file.id)}
+                        >
                             <Trash2 />
                         </li>
                         <li className="table__data table__data_date">

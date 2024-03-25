@@ -11,4 +11,11 @@ export const FileService = {
             timeout: 5000,
         });
     },
+    async fileDelete(id: number) {
+        return await instanceWithTokens.delete(`file/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        });
+    },
 };

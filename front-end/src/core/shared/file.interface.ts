@@ -9,3 +9,8 @@ export interface IFileData {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface IFileDelete {
+    idFile: number;
+    message: string;
+}
