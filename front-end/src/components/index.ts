@@ -9,3 +9,4 @@ export { Content } from 'components/homePage/Content';
 export { DropDown } from 'components/ui/DropDown';
 export { UploadFile } from 'components/ui/UploadFile';
 export { DataTable } from 'components/ui/DataTable';
+export { Spinner } from 'components/ui/Spinner';

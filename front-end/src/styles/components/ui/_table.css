@@ -45,4 +45,8 @@
     .table__data_size {
         @apply col-start-12 col-end-13;
     }
+
+    .table__info {
+        @apply col-start-1 col-end-13 text-center;
+    }
 }

@@ -18,4 +18,11 @@ export const FileService = {
             },
         });
     },
+    async getfilesFromRoot() {
+        return await instanceWithTokens.get('/file', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        });
+    },
 };

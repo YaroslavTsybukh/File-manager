@@ -108,6 +108,47 @@ const fileSlice = createSlice({
                 },
             },
         ),
+        getFilesFromRoot: create.asyncThunk<
+            IFileData[],
+            void,
+            { rejectValue: string }
+        >(
+            async (_, { rejectWithValue }) => {
+                try {
+                    const { data } = await FileService.getfilesFromRoot();
+
+                    return data;
+                } catch (e) {
+                    if (
+                        isAxiosError(e) &&
+                        e.response &&
+                        e.response.data.message
+                    ) {
+                        return rejectWithValue(e.response.data.message);
+                    } else {
+                        throw e;
+                    }
+                }
+            },
+            {
+                pending: (state) => {
+                    state.status = 'loading';
+                    state.successText = '';
+                    state.errorText = '';
+                },
+                fulfilled: (state, action) => {
+                    state.status = 'success';
+                    state.files = action.payload;
+                    state.successText = 'Files from the root are received';
+                    state.errorText = '';
+                },
+                rejected: (state, action) => {
+                    state.status = 'error';
+                    state.successText = '';
+                    if (action.payload) state.errorText = action.payload;
+                },
+            },
+        ),
     }),
     selectors: {
         allState: (state) => state,
@@ -115,5 +156,5 @@ const fileSlice = createSlice({
 });
 
 export const { allState } = fileSlice.selectors;
-export const { uploadFile, deleteFile } = fileSlice.actions;
+export const { uploadFile, deleteFile, getFilesFromRoot } = fileSlice.actions;
 export default fileSlice.reducer;
