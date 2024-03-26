@@ -7,3 +7,6 @@ export { createSlice } from 'core/utils/rtk/createSlice';
 
 //auth
 export { isAuth } from 'core/utils/auth/isAuth';
+
+//file
+export { formatBytes } from 'core/utils/file/formatBytes';

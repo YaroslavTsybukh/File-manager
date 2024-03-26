@@ -1,0 +1,15 @@
+.dropdown {
+    @apply relative inline-block;
+
+    .dropdown__button {
+        @apply gap-2;
+    }
+
+    .dropdown__list {
+        @apply absolute left-1/2 mt-5 min-w-48 -translate-x-2/4 bg-white py-2 text-center shadow-lg;
+    }
+
+    .dropdown__item {
+        @apply cursor-pointer py-1 hover:bg-gray-400;
+    }
+}

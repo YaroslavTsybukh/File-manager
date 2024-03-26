@@ -1,33 +1,36 @@
 import { isAxiosError } from 'axios';
+import { FileService } from 'core/services';
 import { createSlice } from 'core/utils';
-import { IUser, IThunkArg } from 'core/shared/auth.interface';
-import { UsersService, ProfileService } from 'core/services';
+import { IFileData, IFileDelete } from 'core/shared/file.interface';
 
 interface IInitialState {
-    user: IUser | null;
     status: string;
+    files: IFileData[];
     successText: string;
     errorText: string;
 }
 
 const initialState: IInitialState = {
-    user: null,
     status: 'idle',
+    files: [],
     successText: '',
     errorText: '',
 };
 
-const userSlice = createSlice({
-    name: 'user',
+const fileSlice = createSlice({
+    name: 'file',
     initialState,
     reducers: (create) => ({
-        authUser: create.asyncThunk<IUser, IThunkArg, { rejectValue: string }>(
-            async ({ request, data }, { rejectWithValue }) => {
+        uploadFile: create.asyncThunk<
+            IFileData,
+            FormData,
+            { rejectValue: string }
+        >(
+            async (formData, { rejectWithValue }) => {
                 try {
-                    const res = await request(data);
-                    localStorage.setItem('accessToken', res.data.accessToken);
+                    const { data } = await FileService.fileUpload(formData);
 
-                    return res.data;
+                    return data;
                 } catch (e) {
                     if (
                         isAxiosError(e) &&
@@ -35,48 +38,86 @@ const userSlice = createSlice({
                         e.response.data.message
                     ) {
                         return rejectWithValue(e.response.data.message);
+                    } else {
+                        throw e;
                     }
                 }
             },
             {
                 pending: (state) => {
-                    state.user = null;
                     state.status = 'loading';
                     state.successText = '';
                     state.errorText = '';
                 },
                 fulfilled: (state, action) => {
-                    const userData = {
-                        id: action.payload.id,
-                        name: action.payload.name,
-                        email: action.payload.email,
-                        createdAt: action.payload.createdAt,
-                        updatedAt: action.payload.updatedAt,
-                        accessToken: action.payload.accessToken,
-                    };
-
-                    state.user = userData;
                     state.status = 'success';
-                    state.successText = 'User is registered';
+                    state.files.push(action.payload);
+                    state.successText = 'Photo is uploaded';
                     state.errorText = '';
                 },
                 rejected: (state, action) => {
-                    state.user = null;
                     state.status = 'error';
                     state.successText = '';
                     if (action.payload) state.errorText = action.payload;
                 },
             },
         ),
-        updateProfileUser: create.asyncThunk<
-            IUser,
+        deleteFile: create.asyncThunk<
+            IFileDelete,
+            number,
+            { rejectValue: string }
+        >(
+            async (id, { rejectWithValue, fulfillWithValue }) => {
+                try {
+                    const { data } = await FileService.fileDelete(id);
+
+                    return fulfillWithValue({
+                        idFile: id,
+                        message: data.message,
+                    });
+                } catch (e) {
+                    if (
+                        isAxiosError(e) &&
+                        e.response &&
+                        e.response.data.message
+                    ) {
+                        return rejectWithValue(e.response.data.message);
+                    } else {
+                        throw e;
+                    }
+                }
+            },
+            {
+                pending: (state) => {
+                    state.status = 'loading';
+                    state.successText = '';
+                    state.errorText = '';
+                },
+                fulfilled: (state, action) => {
+                    state.status = 'success';
+                    state.files = state.files.filter(
+                        (file) => file.id !== action.payload.idFile,
+                    );
+                    state.successText = action.payload.message;
+                    state.errorText = '';
+                },
+                rejected: (state, action) => {
+                    state.status = 'error';
+                    state.successText = '';
+                    if (action.payload) state.errorText = action.payload;
+                },
+            },
+        ),
+        getFilesFromRoot: create.asyncThunk<
+            IFileData[],
             void,
             { rejectValue: string }
         >(
             async (_, { rejectWithValue }) => {
                 try {
-                    const res = await ProfileService.updateProfile();
-                    return res.data;
+                    const { data } = await FileService.getfilesFromRoot();
+
+                    return data;
                 } catch (e) {
                     if (
                         isAxiosError(e) &&
@@ -84,60 +125,24 @@ const userSlice = createSlice({
                         e.response.data.message
                     ) {
                         return rejectWithValue(e.response.data.message);
+                    } else {
+                        throw e;
                     }
                 }
             },
             {
                 pending: (state) => {
-                    state.user = null;
                     state.status = 'loading';
                     state.successText = '';
                     state.errorText = '';
                 },
                 fulfilled: (state, action) => {
-                    state.user = action.payload;
                     state.status = 'success';
-                    state.successText = '';
+                    state.files = action.payload;
+                    state.successText = 'Files from the root are received';
                     state.errorText = '';
                 },
                 rejected: (state, action) => {
-                    state.user = null;
-                    state.status = 'error';
-                    state.successText = '';
-                    if (action.payload) state.errorText = action.payload;
-                },
-            },
-        ),
-        logoutUser: create.asyncThunk<void, void, { rejectValue: string }>(
-            async (_, { rejectWithValue }) => {
-                try {
-                    const res = await UsersService.logoutUser();
-                    localStorage.removeItem('accessToken');
-                } catch (e) {
-                    if (
-                        isAxiosError(e) &&
-                        e.response &&
-                        e.response.data.message
-                    ) {
-                        return rejectWithValue(e.response.data.message);
-                    }
-                }
-            },
-            {
-                pending: (state) => {
-                    state.user = null;
-                    state.status = 'loading';
-                    state.successText = '';
-                    state.errorText = '';
-                },
-                fulfilled: (state) => {
-                    state.user = null;
-                    state.status = 'success';
-                    state.successText = 'User logged out';
-                    state.errorText = '';
-                },
-                rejected: (state, action) => {
-                    state.user = null;
                     state.status = 'error';
                     state.successText = '';
                     if (action.payload) state.errorText = action.payload;
@@ -147,10 +152,9 @@ const userSlice = createSlice({
     }),
     selectors: {
         allState: (state) => state,
-        selectStatus: (state) => state.status,
-        selectUser: (state) => state.user,
     },
 });
-export const { allState, selectStatus, selectUser } = userSlice.selectors;
-export const { authUser, updateProfileUser, logoutUser } = userSlice.actions;
-export default userSlice.reducer;
+
+export const { allState } = fileSlice.selectors;
+export const { uploadFile, deleteFile, getFilesFromRoot } = fileSlice.actions;
+export default fileSlice.reducer;

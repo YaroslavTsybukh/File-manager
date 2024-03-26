@@ -1,0 +1,9 @@
+.upload {
+    .upload__input {
+        @apply hidden;
+    }
+
+    .upload__label {
+        @apply block cursor-pointer;
+    }
+}

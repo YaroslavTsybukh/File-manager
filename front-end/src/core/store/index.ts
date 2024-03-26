@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './slices/userSlice';
+import user from './slices/userSlice';
+import file from './slices/fileSlice';
 
 export const store = configureStore({
-    reducer: { userReducer },
+    reducer: { user, file },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

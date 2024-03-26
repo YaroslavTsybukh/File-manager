@@ -1,7 +1,7 @@
 import { Home, Share2, Trash2, Settings } from 'lucide-react';
 import { paths } from 'core/config';
 
-export const sidebarItems = [
+export const SIDEBAR_ITEMS = [
     {
         id: 1,
         content: 'Home',
